@@ -26,7 +26,7 @@ func NewUserController(uu usecase.IUserUsecase) IUserController {
 
 func (uc *userController) SignUp(c echo.Context) error {
 	user := model.User{}
-	if err := c.Bind(user); err != nil {
+	if err := c.Bind(&user); err != nil {
 		return c.JSON(http.StatusBadRequest, err.Error())
 	}
 	userRes, err := uc.uu.SignUp(user)
